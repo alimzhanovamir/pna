@@ -7,36 +7,30 @@ const char removeNewLineChar(char name[20]) {
 }
 
 int main() {
-    char rawName[20], rawSurname[20], rawPatronymic[20];
-    printf("Введите ваше имя\n");
-    fgets(rawName, 20, stdin);
-    printf("Введите вашу фамилию\n");
-    fgets(rawSurname, 20, stdin);
-    printf("Введите ваше отчество\n");
-    fgets(rawPatronymic, 20, stdin);
-    
+    char name[20], surname[20], patronymic[20];
     char text[60] = "";
+    printf("Введите ваше имя\n");
+    fgets(name, 20, stdin);
+    printf("Введите вашу фамилию\n");
+    fgets(surname, 20, stdin);
+    printf("Введите ваше отчество\n");
+    fgets(patronymic, 20, stdin);
+    
+    removeNewLineChar(name);
+    removeNewLineChar(surname);
+    removeNewLineChar(patronymic);
 
-    printf("%s %s %s\n", rawName, rawSurname, rawPatronymic);
-    char name = removeNewLineChar(rawName);
-    char surname = removeNewLineChar(rawSurname);
-    char patronymic = removeNewLineChar(rawPatronymic);
-    printf("%s %s %s\n", &name, &surname, &patronymic);
+    if (strlen(name) > 1) {
+        strcat(text, name);
 
-    if (strlen(&name) > 1) {
-        strcat(text, &name);
-
-        if (strlen(&surname) > 1) {
+        if (strlen(surname) > 1 && strlen(patronymic) > 1) {
             strcat(text, " ");
-            strcat(text, &surname);
-        }
-
-        if (strlen(&patronymic) > 1) {
+            strcat(text, surname);
             strcat(text, " ");
-            strcat(text, &patronymic);
+            strcat(text, patronymic);
         }
     } else {
-        strcat(text, "Незнакомец");
+        strcat(text, "незнакомец");
     }
     
 
